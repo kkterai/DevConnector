@@ -2,6 +2,10 @@
 const express = require('express');
 // Import database
 const mongoose = require('mongoose');
+// Import route JS files
+const users = require('.routes/api/users');
+const profile = require('.routes/api/profile');
+const posts = require('.routes/api/posts');
 // Next, create an instance of express, or "Instantiate" a router
 const app = express();
 
@@ -15,6 +19,10 @@ mongoose
 
 // First route
 app.get('/', (req, res) => res.send('Hello World'));
+// Use routes
+app.use('/api/users', users)
+app.use('/api/profile', profile)
+app.use('/api/posts', posts)
 
 // Open a port - Pick one greater than 5000
 const port = 5555;
