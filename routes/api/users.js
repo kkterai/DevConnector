@@ -52,6 +52,7 @@ router.post('/register', (req,res) => {
     .catch(err => console.log(err)); // failure
 });
 
+<<<<<<< HEAD
 // @route   POST api/users/register
 // @desc    Register user
 // @access  public
@@ -92,4 +93,6 @@ router.post('/login', (req, res) => {
         .catch()
     })    
 
+=======
+>>>>>>> d1daa7deb29003c59ea707ccf0847e91555917a0
 module.exports = router;
