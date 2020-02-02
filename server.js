@@ -7,6 +7,7 @@ const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const bodyparser = require('body-parser');
+const passport = require('passport');
 // Next, create an instance of express, or "Instantiate" a router
 const app = express();
 
@@ -22,6 +23,9 @@ mongoose
     .connect(db)
     .then(() => console.log("MongoDb connected!"))
     .catch(err => console.log(err));
+
+//Passport middleware
+app.use(passport.initialize());
 
 // First route
 app.get('/', (req, res) => res.send('Hello World'));
