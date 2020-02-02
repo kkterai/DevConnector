@@ -31,4 +31,5 @@ router.post('/register', (req,res) => {
     }) // success
     .catch(err => console.log(err)); // failure
 });
+
 module.exports = router;
