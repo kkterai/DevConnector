@@ -19,7 +19,7 @@ router.post("/register", (req, res) => {
   if (!isValid){
     return res.status(400).json(errors);
   }
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email }) // Equivalent to 'where' statement in sql
     .then(user => {
       if (user) {
         errors.email = "Email already exists";
