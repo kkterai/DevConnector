@@ -9,6 +9,7 @@ const router = express.Router();
 
 // Load input validation
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // @route   POST api/users/register
 // @desc    Register user
