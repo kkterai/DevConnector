@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import passport from 'passport';
 import axios from 'axios';
 import classnames from 'classnames';
 
