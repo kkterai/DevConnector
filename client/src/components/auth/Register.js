@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import classnames from 'classnames';
+import { registerUser } from '../../actions/authAction';
+import PropTypes from 'prop-types';
+
 
 class Register extends Component {
     constructor() {
@@ -32,6 +36,8 @@ class Register extends Component {
             errors: {}
         }
 
+        this.props.registerUser(newUser);
+
         axios
             .post('/api/users/register', newUser)
             .then(res => console.log(res.data))
@@ -40,9 +46,11 @@ class Register extends Component {
 
     render() {
         const {errors} = this.state;
+        const {user} = this.props.auth;
 
         return (
             <div className="register">
+                {user ? user.name : null}
                 <div className="container">
                 <div className="row">
                     <div className="col-md-8 m-auto">
@@ -50,7 +58,7 @@ class Register extends Component {
                     <p className="lead text-center">Create your DevConnector account</p>
                     <form noValidate onSubmit={this.onSubmit}>
                         <div className="form-group">
-                        <input type="text" 
+                        <input type="name" 
                         className={classnames("form-control form-control-lg", {
                             "is-invalid": errors.name
                             })} 
@@ -116,4 +124,14 @@ class Register extends Component {
     }
 }
 
-export default Register;
+// Make sure that registerUser and auth are available to load
+Register.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, {registerUser})(Register);
